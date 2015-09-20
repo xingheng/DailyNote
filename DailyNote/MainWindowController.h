@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainWindowController.h
 //  DailyNote
 //
 //  Created by Will Han on 9/20/15.
@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ViewController : NSViewController
-
+@interface MainWindowController : NSWindowController
 
 @end
-

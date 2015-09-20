@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainWindowController.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -17,18 +18,31 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 @interface AppDelegate ()
 {
     NSStatusItem *statusItem;
+    MainWindowController *mainWC;
 }
 
 @end
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     
     [self initStatusBarConfig];
+    [self showDefaultWindow];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+{
+    if (!flag) {
+        [self showDefaultWindow];
+    }
+    
+    return YES;
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
     // Insert code here to tear down your application
 }
 
@@ -69,7 +83,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     switch (item.tag) {
         case DNMenuItemKindMain:
-            
+            [self showMainWindow];
             break;
         case DNMenuItemKindPreferences:
             
@@ -80,5 +94,21 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     }
 }
 
+- (void)showDefaultWindow
+{
+    [self showMainWindow];
+}
+
+#pragma mark - Actions
+
+- (void)showMainWindow
+{
+    if (!mainWC) {
+        mainWC = [[MainWindowController alloc] init];
+    }
+    
+    [mainWC showWindow:self];
+    [mainWC becomeFirstResponder];
+}
 
 @end
