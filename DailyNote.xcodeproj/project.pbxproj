@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE731FF31BAE996A000AC87C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF21BAE996A000AC87C /* AppDelegate.m */; };
+		BE731FF51BAE996A000AC87C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF41BAE996A000AC87C /* main.m */; };
+		BE731FF81BAE996A000AC87C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF71BAE996A000AC87C /* ViewController.m */; };
+		BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE731FF91BAE996A000AC87C /* Images.xcassets */; };
+		BE731FFD1BAE996A000AC87C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE731FFB1BAE996A000AC87C /* Main.storyboard */; };
+		BE7320091BAE996B000AC87C /* DailyNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7320081BAE996B000AC87C /* DailyNoteTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE7320031BAE996B000AC87C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE731FE41BAE996A000AC87C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE731FEB1BAE996A000AC87C;
+			remoteInfo = DailyNote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE731FEC1BAE996A000AC87C /* DailyNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE731FF01BAE996A000AC87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE731FF11BAE996A000AC87C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BE731FF21BAE996A000AC87C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BE731FF41BAE996A000AC87C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BE731FF61BAE996A000AC87C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BE731FF71BAE996A000AC87C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BE731FF91BAE996A000AC87C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BE731FFC1BAE996A000AC87C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE7320021BAE996B000AC87C /* DailyNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7320071BAE996B000AC87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE7320081BAE996B000AC87C /* DailyNoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyNoteTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE731FE91BAE996A000AC87C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE731FFF1BAE996B000AC87C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE731FE31BAE996A000AC87C = {
+			isa = PBXGroup;
+			children = (
+				BE731FEE1BAE996A000AC87C /* DailyNote */,
+				BE7320051BAE996B000AC87C /* DailyNoteTests */,
+				BE731FED1BAE996A000AC87C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE731FED1BAE996A000AC87C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE731FEC1BAE996A000AC87C /* DailyNote.app */,
+				BE7320021BAE996B000AC87C /* DailyNoteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE731FEE1BAE996A000AC87C /* DailyNote */ = {
+			isa = PBXGroup;
+			children = (
+				BE731FF11BAE996A000AC87C /* AppDelegate.h */,
+				BE731FF21BAE996A000AC87C /* AppDelegate.m */,
+				BE731FF61BAE996A000AC87C /* ViewController.h */,
+				BE731FF71BAE996A000AC87C /* ViewController.m */,
+				BE731FF91BAE996A000AC87C /* Images.xcassets */,
+				BE731FFB1BAE996A000AC87C /* Main.storyboard */,
+				BE731FEF1BAE996A000AC87C /* Supporting Files */,
+			);
+			path = DailyNote;
+			sourceTree = "<group>";
+		};
+		BE731FEF1BAE996A000AC87C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE731FF01BAE996A000AC87C /* Info.plist */,
+				BE731FF41BAE996A000AC87C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE7320051BAE996B000AC87C /* DailyNoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE7320081BAE996B000AC87C /* DailyNoteTests.m */,
+				BE7320061BAE996B000AC87C /* Supporting Files */,
+			);
+			path = DailyNoteTests;
+			sourceTree = "<group>";
+		};
+		BE7320061BAE996B000AC87C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE7320071BAE996B000AC87C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE731FEB1BAE996A000AC87C /* DailyNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE73200C1BAE996B000AC87C /* Build configuration list for PBXNativeTarget "DailyNote" */;
+			buildPhases = (
+				BE731FE81BAE996A000AC87C /* Sources */,
+				BE731FE91BAE996A000AC87C /* Frameworks */,
+				BE731FEA1BAE996A000AC87C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DailyNote;
+			productName = DailyNote;
+			productReference = BE731FEC1BAE996A000AC87C /* DailyNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE7320011BAE996B000AC87C /* DailyNoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE73200F1BAE996B000AC87C /* Build configuration list for PBXNativeTarget "DailyNoteTests" */;
+			buildPhases = (
+				BE731FFE1BAE996B000AC87C /* Sources */,
+				BE731FFF1BAE996B000AC87C /* Frameworks */,
+				BE7320001BAE996B000AC87C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE7320041BAE996B000AC87C /* PBXTargetDependency */,
+			);
+			name = DailyNoteTests;
+			productName = DailyNoteTests;
+			productReference = BE7320021BAE996B000AC87C /* DailyNoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE731FE41BAE996A000AC87C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Will Han";
+				TargetAttributes = {
+					BE731FEB1BAE996A000AC87C = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					BE7320011BAE996B000AC87C = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = BE731FEB1BAE996A000AC87C;
+					};
+				};
+			};
+			buildConfigurationList = BE731FE71BAE996A000AC87C /* Build configuration list for PBXProject "DailyNote" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE731FE31BAE996A000AC87C;
+			productRefGroup = BE731FED1BAE996A000AC87C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE731FEB1BAE996A000AC87C /* DailyNote */,
+				BE7320011BAE996B000AC87C /* DailyNoteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE731FEA1BAE996A000AC87C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */,
+				BE731FFD1BAE996A000AC87C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE7320001BAE996B000AC87C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE731FE81BAE996A000AC87C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE731FF81BAE996A000AC87C /* ViewController.m in Sources */,
+				BE731FF51BAE996A000AC87C /* main.m in Sources */,
+				BE731FF31BAE996A000AC87C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE731FFE1BAE996B000AC87C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7320091BAE996B000AC87C /* DailyNoteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE7320041BAE996B000AC87C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE731FEB1BAE996A000AC87C /* DailyNote */;
+			targetProxy = BE7320031BAE996B000AC87C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE731FFB1BAE996A000AC87C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE731FFC1BAE996A000AC87C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE73200A1BAE996B000AC87C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE73200B1BAE996B000AC87C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BE73200D1BAE996B000AC87C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DailyNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE73200E1BAE996B000AC87C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DailyNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BE7320101BAE996B000AC87C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DailyNoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyNote.app/Contents/MacOS/DailyNote";
+			};
+			name = Debug;
+		};
+		BE7320111BAE996B000AC87C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DailyNoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyNote.app/Contents/MacOS/DailyNote";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE731FE71BAE996A000AC87C /* Build configuration list for PBXProject "DailyNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE73200A1BAE996B000AC87C /* Debug */,
+				BE73200B1BAE996B000AC87C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE73200C1BAE996B000AC87C /* Build configuration list for PBXNativeTarget "DailyNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE73200D1BAE996B000AC87C /* Debug */,
+				BE73200E1BAE996B000AC87C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BE73200F1BAE996B000AC87C /* Build configuration list for PBXNativeTarget "DailyNoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7320101BAE996B000AC87C /* Debug */,
+				BE7320111BAE996B000AC87C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE731FE41BAE996A000AC87C /* Project object */;
+}
