@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainWindowController.h"
+#import "PreferencesWindowController.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -19,6 +20,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 {
     NSStatusItem *statusItem;
     MainWindowController *mainWC;
+    PreferencesWindowController *prefWC;
 }
 
 @end
@@ -86,7 +88,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             [self showMainWindow];
             break;
         case DNMenuItemKindPreferences:
-            
+            [self showPreferencesWindow];
             break;
         case DNMenuItemKindQuit:
             exit(EXIT_SUCCESS);
@@ -109,6 +111,16 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     [mainWC showWindow:self];
     [mainWC becomeFirstResponder];
+}
+
+- (void)showPreferencesWindow
+{
+    if (!prefWC) {
+        prefWC = [[PreferencesWindowController alloc] init];
+    }
+    
+    [prefWC showWindow:self];
+    [prefWC becomeFirstResponder];
 }
 
 @end
