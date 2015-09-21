@@ -1,9 +1,11 @@
 
 CREATE TABLE `noterecord` (
+	`uid`	TEXT NOT NULL,
 	`content`	TEXT NOT NULL,
 	`date`	TEXT,
 	`weekOfYear`	INTEGER,
 	`weekOfMonth`	INTEGER,
 	`year`	INTEGER,
-	`month`	INTEGER
+	`month`	INTEGER,
+	PRIMARY KEY(uid)
 );

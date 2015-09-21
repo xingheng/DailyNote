@@ -10,6 +10,7 @@
 
 @interface NoteRecord : NSObject
 
+@property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSDate *date;
 @property (nonatomic, assign) NSInteger weekOfYear;

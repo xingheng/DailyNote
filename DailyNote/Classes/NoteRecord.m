@@ -19,6 +19,7 @@
 - (instancetype)initWithText:(NSString *)noteText date:(NSDate *)date
 {
     if (self = [super init]) {
+        _uid = [[NSUUID UUID] UUIDString];
         _content = noteText;
         _date = date;
         
