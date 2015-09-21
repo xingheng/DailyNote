@@ -19,6 +19,12 @@ BOOL IsExists(NSString *strPath)
     return [fileMgr fileExistsAtPath:strPath];
 }
 
+BOOL CreateDirectory(NSString *strPath, NSError **outError)
+{
+    NSFileManager *fileMgr = GetDefaultFileManager();
+    return [fileMgr createDirectoryAtPath:strPath withIntermediateDirectories:YES attributes:nil error:outError];
+}
+
 BOOL CreateFile(NSString *strPath, NSError **outError)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();

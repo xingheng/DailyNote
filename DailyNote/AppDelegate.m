@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "MainWindowController.h"
 #import "PreferencesWindowController.h"
+#import "FileMgrUtil.h"
+#import "DBHelper.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -29,7 +31,8 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
+    [self initDDLog];
+    [self initDBFile];
     [self initStatusBarConfig];
     [self showDefaultWindow];
 }
@@ -48,7 +51,29 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     // Insert code here to tear down your application
 }
 
-#pragma mark - 
+#pragma mark -
+
+- (void)initDDLog
+{
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    return;
+    DDLogFileManagerDefault *fileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:nil];
+    
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:fileManager];
+    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+    fileLogger.maximumFileSize = 1024 * 512;
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 30;
+    
+    [DDLog addLogger:fileLogger];
+}
+
+- (void)initDBFile
+{
+    if (![[DBHelper sharedInstance] loadDBFile]) {
+        DDLogError(@"Failed to load core database file!");
+    }
+}
 
 - (void)initStatusBarConfig
 {

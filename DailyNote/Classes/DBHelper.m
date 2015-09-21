@@ -8,6 +8,10 @@
 
 #import "DBHelper.h"
 #import <FMDB.h>
+#import "FileMgrUtil.h"
+
+#define kSTRKey_DBFileName              @"dailynote_data"
+#define kSTRKey_DBFileExtension         @"sqlite3"
 
 #define kSTRKey_TABLE_NAME              @"noterecord"
 
@@ -39,25 +43,51 @@
 - (instancetype)init
 {
     if (self = [super init]) {
+        if (!database) {
+            [self loadDBFile];
+        }
+        
         [self loadDBData];
     }
     
     return self;
 }
 
-- (void)loadDBData
+- (BOOL)loadDBFile
 {
-    NSString *strPath = [[NSBundle mainBundle] pathForResource:@"dailynote_data" ofType:@"sqlite3"];
+    NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    NSString *cacheRoot = [cacheDir stringByAppendingPathComponent:@"DailyNote/Data"];
     
-    if (!strPath) {
-        DDLogError(@"No default tenant database file found, you should go to Preferences to choose one.");
-        return;
+    if (!IsExists(cacheRoot)) {
+        NSError *err = nil;
+        
+        if (!CreateDirectory(cacheRoot, &err)) {
+            DDLogError(@"Failed to create directory %@ !", cacheRoot);
+            return NO;
+        }
     }
     
-    database = [FMDatabase databaseWithPath:strPath];
+    NSString *strDBPath = [NSString stringWithFormat:@"%@/%@.%@", cacheRoot, kSTRKey_DBFileName, kSTRKey_DBFileExtension];
     
+    if (!IsExists(strDBPath)) {
+        NSString *strPath = [[NSBundle mainBundle] pathForResource:kSTRKey_DBFileName ofType:kSTRKey_DBFileExtension];
+        NSError *err = nil;
+        
+        if (!CopyFile(strPath, strDBPath, &err)) {
+            DDLogError(@"Failed to copy file %@ to %@ !", strPath, strDBPath);
+            return NO;
+        }
+    }
+    
+    database = [FMDatabase databaseWithPath:strDBPath];
+    
+    return YES;
+}
+
+- (void)loadDBData
+{
     if (![database open]) {
-        DDLogError(@"Open database failed, database: %@, error: %@, code: %d", strPath, database.lastErrorMessage, database.lastErrorCode);
+        DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
         return;
     }
     

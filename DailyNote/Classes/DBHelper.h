@@ -15,6 +15,8 @@
 
 + (instancetype)sharedInstance;
 
+- (BOOL)loadDBFile;
+
 - (void)saveRecord:(NoteRecord *)record;
 
 @end

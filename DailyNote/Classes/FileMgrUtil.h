@@ -12,6 +12,8 @@ NSFileManager *GetDefaultFileManager();
 
 BOOL IsExists(NSString *strPath);
 
+BOOL CreateDirectory(NSString *strPath, NSError **outError);
+
 BOOL CreateFile(NSString *strPath, NSError **outError);
 
 BOOL DeleteFile(NSString *strPath, NSError **outError);
