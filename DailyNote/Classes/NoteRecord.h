@@ -10,8 +10,8 @@
 
 @interface NoteRecord : NSObject
 
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSDate *date;
 @property (nonatomic, assign) NSInteger weekOfYear;
 @property (nonatomic, assign) NSInteger weekOfMonth;
 @property (nonatomic, assign) NSInteger year;

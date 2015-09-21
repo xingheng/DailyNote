@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NoteRecord.h"
 
 @interface DBHelper : NSObject
 
+@property (nonatomic, strong, readonly) NSMutableArray *noteRecords;
+
 + (instancetype)sharedInstance;
+
+- (void)saveRecord:(NoteRecord *)record;
 
 @end

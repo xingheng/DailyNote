@@ -7,6 +7,8 @@
 //
 
 #import "MainWindowController.h"
+#import "DBHelper.h"
+#import "AlertUtil.h"
 
 @interface MainWindowController ()
 
@@ -43,7 +45,15 @@
 
 - (IBAction)postButtonClicked:(id)sender
 {
+    NSString *text = _tfNoteTextView.string;
     
+    if (text.length <= 0) {
+        RunAlertPanel(@"Content shouldn't be empty", @"");
+        return;
+    }
+    
+    NoteRecord *record = [NoteRecord createNoteRecordWithCurrentDate:text];
+    [[DBHelper sharedInstance] saveRecord:record];
 }
 
 @end

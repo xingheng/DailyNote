@@ -14,6 +14,7 @@
 		68F37CBC1BAFE7B500D070B0 /* dailynote_data.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */; };
 		68F37CC01BAFE80C00D070B0 /* NoteRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CBF1BAFE80C00D070B0 /* NoteRecord.m */; };
 		68F37CC31BAFE82700D070B0 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CC21BAFE82700D070B0 /* DBHelper.m */; };
+		7B114D01EE389CFFCBD24905 /* libPods-DailyNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DB6705DB623732603B550F /* libPods-DailyNote.a */; };
 		BE731FF31BAE996A000AC87C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF21BAE996A000AC87C /* AppDelegate.m */; };
 		BE731FF51BAE996A000AC87C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF41BAE996A000AC87C /* main.m */; };
 		BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE731FF91BAE996A000AC87C /* Images.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02DB6705DB623732603B550F /* libPods-DailyNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DailyNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F37CAD1BAF9E3E00D070B0 /* FileMgrUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMgrUtil.h; sourceTree = "<group>"; };
 		68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMgrUtil.m; sourceTree = "<group>"; };
 		68F37CB01BAF9EC200D070B0 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		68F37CBF1BAFE80C00D070B0 /* NoteRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteRecord.m; sourceTree = "<group>"; };
 		68F37CC11BAFE82700D070B0 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		68F37CC21BAFE82700D070B0 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		68F37CC41BAFED8700D070B0 /* DailyNote_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyNote_PrefixHeader.pch; sourceTree = "<group>"; };
+		A8857833067B0609102B6641 /* Pods-DailyNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyNote/Pods-DailyNote.release.xcconfig"; sourceTree = "<group>"; };
 		BE731FEC1BAE996A000AC87C /* DailyNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE731FF01BAE996A000AC87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE731FF11BAE996A000AC87C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 		BE73201C1BAEE787000AC87C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		BE73201D1BAEE787000AC87C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		BE73201E1BAEE787000AC87C /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
+		EA4C247E6238560AEB2A42D0 /* Pods-DailyNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyNote/Pods-DailyNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B114D01EE389CFFCBD24905 /* libPods-DailyNote.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +120,15 @@
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
 		};
+		9904869803DF6C91323FF877 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA4C247E6238560AEB2A42D0 /* Pods-DailyNote.debug.xcconfig */,
+				A8857833067B0609102B6641 /* Pods-DailyNote.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE731FE31BAE996A000AC87C = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +136,8 @@
 				68F37CB91BAFE7B500D070B0 /* Resources */,
 				BE7320051BAE996B000AC87C /* DailyNoteTests */,
 				BE731FED1BAE996A000AC87C /* Products */,
+				9904869803DF6C91323FF877 /* Pods */,
+				CE4254BF4F05428B15249339 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +174,7 @@
 			children = (
 				BE731FF01BAE996A000AC87C /* Info.plist */,
 				BE731FF41BAE996A000AC87C /* main.m */,
+				68F37CC41BAFED8700D070B0 /* DailyNote_PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -178,6 +196,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CE4254BF4F05428B15249339 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02DB6705DB623732603B550F /* libPods-DailyNote.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE73200C1BAE996B000AC87C /* Build configuration list for PBXNativeTarget "DailyNote" */;
 			buildPhases = (
+				9F16E56CD9D219BFCEA905F0 /* Check Pods Manifest.lock */,
 				BE731FE81BAE996A000AC87C /* Sources */,
 				BE731FE91BAE996A000AC87C /* Frameworks */,
 				BE731FEA1BAE996A000AC87C /* Resources */,
+				584451F052E12444A6A18D0D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,6 +302,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		584451F052E12444A6A18D0D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DailyNote/Pods-DailyNote-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F16E56CD9D219BFCEA905F0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE731FE81BAE996A000AC87C /* Sources */ = {
@@ -404,9 +465,12 @@
 		};
 		BE73200D1BAE996B000AC87C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA4C247E6238560AEB2A42D0 /* Pods-DailyNote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = $SRCROOT/$PROJECT_NAME/DailyNote_PrefixHeader.pch;
 				INFOPLIST_FILE = DailyNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,9 +479,12 @@
 		};
 		BE73200E1BAE996B000AC87C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8857833067B0609102B6641 /* Pods-DailyNote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = $SRCROOT/$PROJECT_NAME/DailyNote_PrefixHeader.pch;
 				INFOPLIST_FILE = DailyNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
