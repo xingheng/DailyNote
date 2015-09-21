@@ -10,6 +10,7 @@
 #import "FileMgrUtil.h"
 #import "AlertUtil.h"
 #import "PreferencesData.h"
+#import "GitRepoManager.h"
 
 @interface PreferencesWindowController ()
 
@@ -64,9 +65,8 @@
     [panel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if(result == NSFileHandlingPanelOKButton) {
             NSURL *url = panel.URL;
-            NSString *strGitPath = [url.path stringByAppendingPathComponent:@".git"];
             
-            if (!IsExists(strGitPath)) {
+            if (![GitRepoManager isValidGitRepo:url.path]) {
                 RunAlertPanel(@"A valid git repo isn't found in the selected path!", @"");
                 return;
             }
