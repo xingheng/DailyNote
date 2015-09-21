@@ -1,0 +1,9 @@
+
+CREATE TABLE `noterecord` (
+	`content`	TEXT NOT NULL,
+	`date`	TEXT,
+	`weekOfYear`	INTEGER,
+	`weakOfMonth`	INTEGER,
+	`year`	INTEGER,
+	`month`	INTEGER
+);

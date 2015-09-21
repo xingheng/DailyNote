@@ -10,6 +10,10 @@
 		68F37CAF1BAF9E3E00D070B0 /* FileMgrUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */; };
 		68F37CB21BAF9EC200D070B0 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB11BAF9EC200D070B0 /* AlertUtil.m */; };
 		68F37CB51BAF9F9A00D070B0 /* PreferencesData.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */; };
+		68F37CB81BAFD49E00D070B0 /* NSDate+CalendarProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB71BAFD49E00D070B0 /* NSDate+CalendarProperty.m */; };
+		68F37CBC1BAFE7B500D070B0 /* dailynote_data.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */; };
+		68F37CC01BAFE80C00D070B0 /* NoteRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CBF1BAFE80C00D070B0 /* NoteRecord.m */; };
+		68F37CC31BAFE82700D070B0 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CC21BAFE82700D070B0 /* DBHelper.m */; };
 		BE731FF31BAE996A000AC87C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF21BAE996A000AC87C /* AppDelegate.m */; };
 		BE731FF51BAE996A000AC87C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE731FF41BAE996A000AC87C /* main.m */; };
 		BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE731FF91BAE996A000AC87C /* Images.xcassets */; };
@@ -38,6 +42,14 @@
 		68F37CB11BAF9EC200D070B0 /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
 		68F37CB31BAF9F9A00D070B0 /* PreferencesData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesData.h; sourceTree = "<group>"; };
 		68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesData.m; sourceTree = "<group>"; };
+		68F37CB61BAFD49E00D070B0 /* NSDate+CalendarProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CalendarProperty.h"; sourceTree = "<group>"; };
+		68F37CB71BAFD49E00D070B0 /* NSDate+CalendarProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CalendarProperty.m"; sourceTree = "<group>"; };
+		68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailynote_data.sqlite3; sourceTree = "<group>"; };
+		68F37CBB1BAFE7B500D070B0 /* sql.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sql.txt; sourceTree = "<group>"; };
+		68F37CBE1BAFE80C00D070B0 /* NoteRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteRecord.h; sourceTree = "<group>"; };
+		68F37CBF1BAFE80C00D070B0 /* NoteRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteRecord.m; sourceTree = "<group>"; };
+		68F37CC11BAFE82700D070B0 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		68F37CC21BAFE82700D070B0 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		BE731FEC1BAE996A000AC87C /* DailyNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE731FF01BAE996A000AC87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE731FF11BAE996A000AC87C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,16 +93,32 @@
 				68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */,
 				68F37CB01BAF9EC200D070B0 /* AlertUtil.h */,
 				68F37CB11BAF9EC200D070B0 /* AlertUtil.m */,
+				68F37CB61BAFD49E00D070B0 /* NSDate+CalendarProperty.h */,
+				68F37CB71BAFD49E00D070B0 /* NSDate+CalendarProperty.m */,
 				68F37CB31BAF9F9A00D070B0 /* PreferencesData.h */,
 				68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */,
+				68F37CBE1BAFE80C00D070B0 /* NoteRecord.h */,
+				68F37CBF1BAFE80C00D070B0 /* NoteRecord.m */,
+				68F37CC11BAFE82700D070B0 /* DBHelper.h */,
+				68F37CC21BAFE82700D070B0 /* DBHelper.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
+		};
+		68F37CB91BAFE7B500D070B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */,
+				68F37CBB1BAFE7B500D070B0 /* sql.txt */,
+			);
+			path = Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 		BE731FE31BAE996A000AC87C = {
 			isa = PBXGroup;
 			children = (
 				BE731FEE1BAE996A000AC87C /* DailyNote */,
+				68F37CB91BAFE7B500D070B0 /* Resources */,
 				BE7320051BAE996B000AC87C /* DailyNoteTests */,
 				BE731FED1BAE996A000AC87C /* Products */,
 			);
@@ -230,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68F37CBC1BAFE7B500D070B0 /* dailynote_data.sqlite3 in Resources */,
 				BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */,
 				BE73201B1BAED63E000AC87C /* MainWindowController.xib in Resources */,
 				BE7320201BAEE787000AC87C /* PreferencesWindowController.xib in Resources */,
@@ -252,10 +281,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F37CB21BAF9EC200D070B0 /* AlertUtil.m in Sources */,
+				68F37CC31BAFE82700D070B0 /* DBHelper.m in Sources */,
+				68F37CC01BAFE80C00D070B0 /* NoteRecord.m in Sources */,
 				BE73201A1BAED63E000AC87C /* MainWindowController.m in Sources */,
 				BE731FF51BAE996A000AC87C /* main.m in Sources */,
 				BE73201F1BAEE787000AC87C /* PreferencesWindowController.m in Sources */,
 				68F37CB51BAF9F9A00D070B0 /* PreferencesData.m in Sources */,
+				68F37CB81BAFD49E00D070B0 /* NSDate+CalendarProperty.m in Sources */,
 				68F37CAF1BAF9E3E00D070B0 /* FileMgrUtil.m in Sources */,
 				BE731FF31BAE996A000AC87C /* AppDelegate.m in Sources */,
 			);
