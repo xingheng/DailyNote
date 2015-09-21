@@ -7,6 +7,9 @@
 //
 
 #import "PreferencesWindowController.h"
+#import "FileMgrUtil.h"
+#import "AlertUtil.h"
+#import "PreferencesData.h"
 
 @interface PreferencesWindowController ()
 
@@ -32,11 +35,22 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    NSString *strPath = GetDailyNoteGitRepoPath();
+    if (strPath) {
+        _pathCtlGitRepo.URL = [NSURL fileURLWithPath:strPath isDirectory:YES];
+    }
+    
+    _cBoxPush2Remote.state = GetFShouldAutoPushWhenPosting() ? 1 : 0;
 }
+
+#pragma mark - Actions
 
 - (IBAction)saveButtonClicked:(id)sender
 {
+    SetDailyNoteGitRepoPath(_pathCtlGitRepo.URL.path);
+    SetFShouldAutoPushWhenPosting(_cBoxPush2Remote.state != 0);
+    
+    [self close];
 }
 
 - (IBAction)gitRepoPathCtlClicked:(id)sender
@@ -50,6 +64,12 @@
     [panel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if(result == NSFileHandlingPanelOKButton) {
             NSURL *url = panel.URL;
+            NSString *strGitPath = [url.path stringByAppendingPathComponent:@".git"];
+            
+            if (!IsExists(strGitPath)) {
+                RunAlertPanel(@"A valid git repo isn't found in the selected path!", @"");
+                return;
+            }
             
             _pathCtlGitRepo.URL = url;
         }
