@@ -80,13 +80,13 @@
     
     if ([fileContent containsString:commentString]) {
         NSRange firstRange = [fileContent rangeOfString:commentString];
-        NSString *subString = [fileContent substringFromIndex:firstRange.location + firstRange.length];
-        NSRange secondRange = [subString rangeOfString:(NSString *)commentPrefix];
+        NSRange searchRange = NSMakeRange(firstRange.location + firstRange.length, fileContent.length - firstRange.location - firstRange.length - 1);
+        NSRange secondRange = [fileContent rangeOfString:(NSString *)commentPrefix options:NSCaseInsensitiveSearch range:searchRange];
         NSRange targetRange = NSMakeRange(firstRange.location, (secondRange.location == NSNotFound ? fileContent.length - 1 : secondRange.location) - firstRange.location);
         
         [fileContent replaceCharactersInRange:targetRange withString:recordContent];
     } else {
-        [fileContent appendFormat:@"%@", recordContent];
+        [fileContent appendFormat:@"\n%@", recordContent];
     }
     
     NSError *err = nil;
