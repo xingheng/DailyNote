@@ -29,25 +29,25 @@
     
     switch (components.weekday) {
         case 1:
-            weekday = @"Monday";
+            weekday = @"Sunday";
             break;
         case 2:
-            weekday = @"Tuesday";
+            weekday = @"Monday";
             break;
         case 3:
-            weekday = @"Wednesday";
+            weekday = @"Tuesday";
             break;
         case 4:
-            weekday = @"Thursday";
+            weekday = @"Wednesday";
             break;
         case 5:
-            weekday = @"Friday";
+            weekday = @"Thursday";
             break;
         case 6:
-            weekday = @"Saturday";
+            weekday = @"Friday";
             break;
         case 7:
-            weekday = @"Sunday";
+            weekday = @"Saturday";
             break;
         default:
             weekday = @"";

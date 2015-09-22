@@ -47,6 +47,15 @@
 
 - (IBAction)postButtonClicked:(id)sender
 {
+    /*
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Hello, World!";
+    notification.informativeText = @"A notification";
+//    notification.soundName = NSUserNotificationDefaultSoundName;
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    */
+
     NSString *text = _tfNoteTextView.string;
     
     if (text.length <= 0) {

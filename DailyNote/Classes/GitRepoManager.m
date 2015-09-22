@@ -9,16 +9,18 @@
 #import "GitRepoManager.h"
 #import "FileMgrUtil.h"
 #import "NSDate+CalendarProperty.h"
+#import "NSDate+StringFormat.h"
 
 @implementation GitRepoManager
 {
+    NSString *repositoryPath;
     NSString *mainRootDir;
 }
 
 - (instancetype)initWithRepoPath:(NSString *)repoPath
 {
     if (self = [super init]) {
-        NSString *repositoryPath = repoPath;
+        repositoryPath = repoPath;
         
         _isValid = [[self class] isValidGitRepo:repoPath];
         mainRootDir = [repositoryPath stringByAppendingPathComponent:@"Data"];
@@ -94,6 +96,36 @@
     if (![fileContent writeToFile:fullname atomically:YES encoding:encoding error:&err]) {
         DDLogError(@"Write data to file '%@' failed! error: %@", fullname, err);
     }
+}
+
+- (void)commitChangesToGit:(NoteRecord *)record
+{
+    NSString *strCommitMessage = [NSString stringWithFormat:@"[DailyNote] Updated!"];
+    NSString *commitDate = [record.date stringDate];
+    
+    NSTask *task = [[NSTask alloc] init];
+    task.currentDirectoryPath = repositoryPath;
+    task.launchPath = @"git";
+    
+    task.arguments = @[@"commit", @"-a", @"-m", strCommitMessage,
+                       @"--date", commitDate];
+    
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput:pipe];
+    [task setStandardError:pipe];
+    
+    @try {
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        DDLogError(exception.description);
+    }
+    
+    NSFileHandle *file = [pipe fileHandleForReading];
+    NSData *data = [file readDataToEndOfFile];
+    NSString *strFullLog = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    DDLogDebug(@"%@", strFullLog);
 }
 
 @end

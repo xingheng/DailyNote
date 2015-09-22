@@ -11,6 +11,7 @@
 #import "PreferencesWindowController.h"
 #import "FileMgrUtil.h"
 #import "DBHelper.h"
+#import "NSDate+Utilities.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -18,7 +19,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindQuit
 };
 
-@interface AppDelegate ()
+@interface AppDelegate () <NSUserNotificationCenterDelegate>
 {
     NSStatusItem *statusItem;
     MainWindowController *mainWC;
@@ -35,6 +36,9 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     [self initDBFile];
     [self initStatusBarConfig];
     [self showDefaultWindow];
+    [self runBackgroundWorker];
+    
+    [NSUserNotificationCenter defaultUserNotificationCenter].delegate = self;
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
@@ -49,6 +53,13 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     // Insert code here to tear down your application
+}
+
+#pragma mark - NSUserNotificationCenterDelegate
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 #pragma mark -
@@ -124,6 +135,26 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)showDefaultWindow
 {
     [self showMainWindow];
+}
+
+- (void)runBackgroundWorker
+{
+    dispatch_queue_t worker = dispatch_queue_create("dailynote_gitrepo_writer", NULL);
+    
+    dispatch_async(worker, ^ {
+        while (true) {
+            DDLogDebug(@"worker is sleeping in background thread....");
+            
+            NSDate *tomorrow = [NSDate dateTomorrow];
+            NSDate *targetTime = [tomorrow dateBySubtractingMinutes:5];
+            
+            [NSThread sleepUntilDate:targetTime];
+            
+            DDLogDebug(@"worker is working in background thread....");
+            
+            // TODO
+        }
+    });
 }
 
 #pragma mark - Actions

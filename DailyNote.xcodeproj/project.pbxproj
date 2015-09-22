@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */; };
+		68EADFD71BB1601800975D52 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EADFD61BB1601800975D52 /* NSDate+Utilities.m */; };
 		68F37CAF1BAF9E3E00D070B0 /* FileMgrUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */; };
 		68F37CB21BAF9EC200D070B0 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB11BAF9EC200D070B0 /* AlertUtil.m */; };
 		68F37CB51BAF9F9A00D070B0 /* PreferencesData.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */; };
@@ -42,6 +43,8 @@
 		02DB6705DB623732603B550F /* libPods-DailyNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DailyNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6898CED41BB0EF2C00AB0722 /* NSDate+StringFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringFormat.h"; sourceTree = "<group>"; };
 		6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringFormat.m"; sourceTree = "<group>"; };
+		68EADFD51BB1601800975D52 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		68EADFD61BB1601800975D52 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		68F37CAD1BAF9E3E00D070B0 /* FileMgrUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMgrUtil.h; sourceTree = "<group>"; };
 		68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMgrUtil.m; sourceTree = "<group>"; };
 		68F37CB01BAF9EC200D070B0 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				68F37CB71BAFD49E00D070B0 /* NSDate+CalendarProperty.m */,
 				6898CED41BB0EF2C00AB0722 /* NSDate+StringFormat.h */,
 				6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */,
+				68EADFD51BB1601800975D52 /* NSDate+Utilities.h */,
+				68EADFD61BB1601800975D52 /* NSDate+Utilities.m */,
 				68F37CB31BAF9F9A00D070B0 /* PreferencesData.h */,
 				68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */,
 				68F37CBE1BAFE80C00D070B0 /* NoteRecord.h */,
@@ -358,6 +363,7 @@
 				BE731FF51BAE996A000AC87C /* main.m in Sources */,
 				BE73201F1BAEE787000AC87C /* PreferencesWindowController.m in Sources */,
 				6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */,
+				68EADFD71BB1601800975D52 /* NSDate+Utilities.m in Sources */,
 				68F37CB51BAF9F9A00D070B0 /* PreferencesData.m in Sources */,
 				68F37CB81BAFD49E00D070B0 /* NSDate+CalendarProperty.m in Sources */,
 				68F37CC71BB0135000D070B0 /* GitRepoManager.m in Sources */,

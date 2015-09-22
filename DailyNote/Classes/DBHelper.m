@@ -84,16 +84,16 @@
     
     database = [FMDatabase databaseWithPath:strDBPath];
     
+    if (![database open]) {
+        DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
+        return NO;
+    }
+    
     return YES;
 }
 
 - (void)loadDBData
 {
-    if (![database open]) {
-        DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
-        return;
-    }
-    
     NSMutableArray *arrNoteRecords = [[NSMutableArray alloc] init];
     
     FMResultSet *dataSet = [database executeQuery:@"SELECT * FROM "kSTRKey_TABLE_NAME];
