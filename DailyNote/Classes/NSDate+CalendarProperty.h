@@ -12,4 +12,6 @@
 
 - (NSDateComponents *)components;
 
+- (NSString *)weekdayString;
+
 @end

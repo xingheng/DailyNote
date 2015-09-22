@@ -9,6 +9,8 @@
 #import "MainWindowController.h"
 #import "DBHelper.h"
 #import "AlertUtil.h"
+#import "GitRepoManager.h"
+#import "PreferencesData.h"
 
 @interface MainWindowController ()
 
@@ -54,6 +56,9 @@
     
     NoteRecord *record = [NoteRecord createNoteRecordWithCurrentDate:text];
     [[DBHelper sharedInstance] saveRecord:record];
+    
+    GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
+    [manager saveRecordToFile:record];
 }
 
 @end

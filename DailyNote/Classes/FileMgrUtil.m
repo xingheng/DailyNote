@@ -25,7 +25,7 @@ BOOL CreateDirectory(NSString *strPath, NSError **outError)
     return [fileMgr createDirectoryAtPath:strPath withIntermediateDirectories:YES attributes:nil error:outError];
 }
 
-BOOL CreateFile(NSString *strPath, NSError **outError)
+BOOL CreateFile(NSString *strPath)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
     return [fileMgr createFileAtPath:strPath contents:nil attributes:nil];
