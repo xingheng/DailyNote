@@ -67,7 +67,7 @@
     [[DBHelper sharedInstance] saveRecord:record];
     
     GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
-    [manager saveRecordToFile:record];
+    [manager saveRecordToFile:record shouldCommit:YES];
 }
 
 @end

@@ -17,6 +17,6 @@
 
 + (BOOL)isValidGitRepo:(NSString *)repoPath;
 
-- (void)saveRecordToFile:(NoteRecord *)record;
+- (void)saveRecordToFile:(NoteRecord *)record shouldCommit:(BOOL)willCommit;
 
 @end

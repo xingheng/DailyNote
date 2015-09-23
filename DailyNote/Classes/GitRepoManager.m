@@ -44,7 +44,7 @@
     return IsExists(strGitPath);
 }
 
-- (void)saveRecordToFile:(NoteRecord *)record
+- (void)saveRecordToFile:(NoteRecord *)record shouldCommit:(BOOL)willCommit
 {
     NSStringEncoding encoding = NSUTF8StringEncoding;
     NSString *filename = [NSString stringWithFormat:@"Week %ldth %ld.md", record.weekOfYear, record.year];
@@ -96,36 +96,48 @@
     if (![fileContent writeToFile:fullname atomically:YES encoding:encoding error:&err]) {
         DDLogError(@"Write data to file '%@' failed! error: %@", fullname, err);
     }
+    
+    if (willCommit) {
+        [self commitChangesToGit:record];
+    }
 }
 
 - (void)commitChangesToGit:(NoteRecord *)record
 {
-    NSString *strCommitMessage = [NSString stringWithFormat:@"[DailyNote] Updated!"];
-    NSString *commitDate = [record.date stringDate];
+    dispatch_block_t block = ^ {
+        NSString *bashScriptPath = [[NSBundle mainBundle] pathForResource:@"git_commit" ofType:@"sh"];
+        NSString *strCommitMessage = [NSString stringWithFormat:@"[DailyNote] Updated!"];
+        NSString *commitDate = [record.date stringDate];
+        
+        NSTask *task = [[NSTask alloc] init];
+        task.currentDirectoryPath = repositoryPath;
+        task.launchPath = @"/bin/sh";
+        
+        task.arguments = @[@"-c", [NSString stringWithFormat:@"%@ \"%@\" \"%@\"", bashScriptPath, strCommitMessage, commitDate]];
+        
+        NSPipe *pipe = [NSPipe pipe];
+        [task setStandardOutput:pipe];
+        [task setStandardError:pipe];
+        
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            DDLogError(exception.description);
+        }
+        
+        NSFileHandle *file = [pipe fileHandleForReading];
+        NSData *data = [file readDataToEndOfFile];
+        NSString *strFullLog = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        DDLogDebug(@"Log:---------\n%@\n-----------", strFullLog);
+    };
     
-    NSTask *task = [[NSTask alloc] init];
-    task.currentDirectoryPath = repositoryPath;
-    task.launchPath = @"git";
-    
-    task.arguments = @[@"commit", @"-a", @"-m", strCommitMessage,
-                       @"--date", commitDate];
-    
-    NSPipe *pipe = [NSPipe pipe];
-    [task setStandardOutput:pipe];
-    [task setStandardError:pipe];
-    
-    @try {
-        [task launch];
+    if ([NSThread isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
+    } else {
+        block();
     }
-    @catch (NSException *exception) {
-        DDLogError(exception.description);
-    }
-    
-    NSFileHandle *file = [pipe fileHandleForReading];
-    NSData *data = [file readDataToEndOfFile];
-    NSString *strFullLog = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    DDLogDebug(@"%@", strFullLog);
 }
 
 @end

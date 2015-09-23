@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */; };
 		68EADFD71BB1601800975D52 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EADFD61BB1601800975D52 /* NSDate+Utilities.m */; };
+		68EADFD91BB2576000975D52 /* git_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = 68EADFD81BB251FC00975D52 /* git_commit.sh */; };
 		68F37CAF1BAF9E3E00D070B0 /* FileMgrUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */; };
 		68F37CB21BAF9EC200D070B0 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB11BAF9EC200D070B0 /* AlertUtil.m */; };
 		68F37CB51BAF9F9A00D070B0 /* PreferencesData.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */; };
@@ -45,6 +46,7 @@
 		6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringFormat.m"; sourceTree = "<group>"; };
 		68EADFD51BB1601800975D52 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		68EADFD61BB1601800975D52 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		68EADFD81BB251FC00975D52 /* git_commit.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_commit.sh; sourceTree = "<group>"; };
 		68F37CAD1BAF9E3E00D070B0 /* FileMgrUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMgrUtil.h; sourceTree = "<group>"; };
 		68F37CAE1BAF9E3E00D070B0 /* FileMgrUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMgrUtil.m; sourceTree = "<group>"; };
 		68F37CB01BAF9EC200D070B0 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */,
 				68F37CBB1BAFE7B500D070B0 /* sql.txt */,
+				68EADFD81BB251FC00975D52 /* git_commit.sh */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -301,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68EADFD91BB2576000975D52 /* git_commit.sh in Resources */,
 				68F37CBC1BAFE7B500D070B0 /* dailynote_data.sqlite3 in Resources */,
 				BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */,
 				BE73201B1BAED63E000AC87C /* MainWindowController.xib in Resources */,

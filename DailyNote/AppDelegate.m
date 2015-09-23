@@ -139,6 +139,8 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 
 - (void)runBackgroundWorker
 {
+    return;
+    
     dispatch_queue_t worker = dispatch_queue_create("dailynote_gitrepo_writer", NULL);
     
     dispatch_async(worker, ^ {
