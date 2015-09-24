@@ -145,9 +145,9 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 {
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-    
-    statusItem.title = @"Note";
+    statusItem.title = @"♨︎";
     statusItem.highlightMode = YES;
+    statusItem.toolTip = @"DailyNote";
     
     NSMenu *menu = [[NSMenu alloc] init];
     menu.delegate = self;
