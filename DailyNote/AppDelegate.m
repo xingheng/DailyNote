@@ -18,14 +18,17 @@
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
     DNMenuItemKindPreferences,
+    DNMenuItemKindLog,
     DNMenuItemKindQuit
 };
 
-@interface AppDelegate () <NSUserNotificationCenterDelegate>
+@interface AppDelegate () <NSUserNotificationCenterDelegate, NSMenuDelegate>
 {
     NSStatusItem *statusItem;
     MainWindowController *mainWC;
     PreferencesWindowController *prefWC;
+    
+    DDLogFileInfo *currentLogFileInfo;
 }
 
 @end
@@ -64,19 +67,46 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     return YES;
 }
 
+#pragma mark - NSMenuDelegate
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    __block NSMenuItem *logItem = nil;
+    
+    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSMenuItem *item = obj;
+        
+        if (item.tag == DNMenuItemKindLog) {
+            logItem = item;
+            *stop = YES;
+        }
+    }];
+    
+    if (logItem) {
+        NSString *logFile = currentLogFileInfo.filePath;
+        logItem.hidden = !IsExists(logFile);
+    }
+}
+
 #pragma mark -
 
 - (void)initDDLog
 {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
-    return;
-    DDLogFileManagerDefault *fileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:nil];
+    NSString *appName = [[NSProcessInfo processInfo] processName];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? paths[0] : NSTemporaryDirectory();
+    NSString *logFileDirectory = [[basePath stringByAppendingPathComponent:@"Logs"] stringByAppendingPathComponent:appName];
     
-    DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:fileManager];
-    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-    fileLogger.maximumFileSize = 1024 * 512;
+    DDLogFileManagerDefault *logFileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:logFileDirectory];
+    
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:logFileManager];
+    fileLogger.rollingFrequency = 60 * 60 * 24 * 7; // 7 * 24 hour rolling
+    // fileLogger.maximumFileSize = 1024 * 512;
     fileLogger.logFileManager.maximumNumberOfLogFiles = 30;
+    
+    currentLogFileInfo = fileLogger.currentLogFileInfo;
     
     [DDLog addLogger:fileLogger];
 }
@@ -97,15 +127,19 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     statusItem.highlightMode = YES;
     
     NSMenu *menu = [[NSMenu alloc] init];
+    menu.delegate = self;
     statusItem.menu = menu;
     
     NSMenuItem *item = nil;
     
-    item = [[NSMenuItem alloc] initWithTitle:@"Main Window" action:@selector(menuItemClicked:) keyEquivalent:@""];
+    item = [[NSMenuItem alloc] initWithTitle:@"Editor" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindMain;
     [menu addItem:item];
     item = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindPreferences;
+    [menu addItem:item];
+    item = [[NSMenuItem alloc] initWithTitle:@"Show Log" action:@selector(menuItemClicked:) keyEquivalent:@""];
+    item.tag = DNMenuItemKindLog;
     [menu addItem:item];
     item = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindQuit;
@@ -127,6 +161,9 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             break;
         case DNMenuItemKindPreferences:
             [self showPreferencesWindow];
+            break;
+        case DNMenuItemKindLog:
+            [self openLogFile];
             break;
         case DNMenuItemKindQuit:
             exit(EXIT_SUCCESS);
@@ -210,6 +247,20 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     [prefWC showWindow:self];
     [prefWC becomeFirstResponder];
+}
+
+- (void)openLogFile
+{
+    NSString *logFullPath = currentLogFileInfo.filePath;
+    
+    if (!IsExists(logFullPath)) {
+        DDLogError(@"Log file doesn't exist. '%@'.", logFullPath);
+        return;
+    }
+    
+    if (![[NSWorkspace sharedWorkspace] openFile:logFullPath withApplication:@"TextEdit.app"]) {
+        DDLogError(@"Failed to open log file '%@'.", logFullPath);
+    }
 }
 
 @end
