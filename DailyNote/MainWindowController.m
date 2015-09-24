@@ -10,6 +10,7 @@
 #import "DBHelper.h"
 #import "AlertUtil.h"
 #import "NSString+Utilities.h"
+#import "PreferencesData.h"
 
 @interface MainWindowController ()
 
@@ -35,6 +36,14 @@
     [super windowDidLoad];
     
     _tfNoteTextView.font = [NSFont systemFontOfSize:15];
+    
+    NSString *strDefaultGitRepoPath = GetDailyNoteGitRepoPath();
+    if (!strDefaultGitRepoPath) {
+        RunAlertPanel(@"No valid git repository path configuration found!", @"Please go to Preferences window to choose one.");
+        _tfNoteTextView.editable = NO;
+    } else {
+        _tfNoteTextView.editable = YES;
+    }
 }
 
 #pragma mark - Actions

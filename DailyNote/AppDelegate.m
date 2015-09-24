@@ -182,7 +182,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     dispatch_async(worker, ^ {
         while (true) {
-            DDLogDebug(@"worker is sleeping in background thread....");
+            DDLogDebug(@"DailyNote worker is sleeping in background thread, date: %@....", [NSDate date]);
             
 #if 1
             NSDate *tomorrow = [NSDate dateTomorrow];
@@ -193,7 +193,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             [NSThread sleepForTimeInterval:20];
 #endif
             
-            DDLogDebug(@"worker is working in background thread....");
+            DDLogDebug(@"DailyNote worker is working in background thread, date: %@....", [NSDate date]);
             
             DBHelper *dbHelper = [DBHelper sharedInstance];
             GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
@@ -217,9 +217,12 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
                 [dbHelper removeNoteRecord:item];
             }
             
+            NSString *strFinishedLog = [NSString stringWithFormat:@"Committed %ld record(s) to git repository!", records.count];
+            DDLogInfo(strFinishedLog);
+            
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             notification.title = @"DailyNote";
-            notification.informativeText = [NSString stringWithFormat:@"Committed %ld record(s) to git repository!", records.count];
+            notification.informativeText = strFinishedLog;
             // notification.soundName = NSUserNotificationDefaultSoundName;
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
