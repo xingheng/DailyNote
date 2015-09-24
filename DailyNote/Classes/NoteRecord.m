@@ -33,4 +33,9 @@
     return self;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"[%@]uid: %@, date: %@, content: %@", NSStringFromClass([self class]), _uid, _date, _content];
+}
+
 @end

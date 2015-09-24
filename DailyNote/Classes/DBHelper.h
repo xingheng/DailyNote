@@ -11,12 +11,14 @@
 
 @interface DBHelper : NSObject
 
-@property (nonatomic, strong, readonly) NSMutableArray *noteRecords;
+@property (nonatomic, copy, readonly) NSArray *allNoteRecords;
 
 + (instancetype)sharedInstance;
 
 - (BOOL)loadDBFile;
 
 - (void)saveRecord:(NoteRecord *)record;
+
+- (void)removeNoteRecord:(NoteRecord *)record;
 
 @end

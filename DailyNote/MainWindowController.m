@@ -9,8 +9,7 @@
 #import "MainWindowController.h"
 #import "DBHelper.h"
 #import "AlertUtil.h"
-#import "GitRepoManager.h"
-#import "PreferencesData.h"
+#import "NSString+Utilities.h"
 
 @interface MainWindowController ()
 
@@ -47,27 +46,16 @@
 
 - (IBAction)postButtonClicked:(id)sender
 {
-    /*
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"Hello, World!";
-    notification.informativeText = @"A notification";
-//    notification.soundName = NSUserNotificationDefaultSoundName;
-    
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    */
-
     NSString *text = _tfNoteTextView.string;
     
-    if (text.length <= 0) {
+    if ([text isEmpty]) {
         RunAlertPanel(@"Content shouldn't be empty", @"");
         return;
     }
     
     NoteRecord *record = [NoteRecord createNoteRecordWithCurrentDate:text];
     [[DBHelper sharedInstance] saveRecord:record];
-    
-    GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
-    [manager saveRecordToFile:record shouldCommit:YES];
+    DDLogInfo(@"Saved note record '%@' to database.", record);
 }
 
 @end

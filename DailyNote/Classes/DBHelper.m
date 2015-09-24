@@ -24,6 +24,12 @@
 #define kSTRKey_COLUMN_Month            @"month"
 
 
+@interface DBHelper()
+
+@property (nonatomic, strong) NSMutableArray *noteRecords;
+
+@end
+
 @implementation DBHelper
 {
     FMDatabase *database;
@@ -56,40 +62,47 @@
 
 - (BOOL)loadDBFile
 {
-    NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    NSString *cacheRoot = [cacheDir stringByAppendingPathComponent:@"DailyNote/Data"];
-    
-    if (!IsExists(cacheRoot)) {
-        NSError *err = nil;
+    static BOOL loadResult = YES;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         
-        if (!CreateDirectory(cacheRoot, &err)) {
-            DDLogError(@"Failed to create directory %@ !", cacheRoot);
-            return NO;
-        }
-    }
-    
-    NSString *strDBPath = [NSString stringWithFormat:@"%@/%@.%@", cacheRoot, kSTRKey_DBFileName, kSTRKey_DBFileExtension];
-    
-    // DeleteFile(strDBPath, nil);
-    
-    if (!IsExists(strDBPath)) {
-        NSString *strPath = [[NSBundle mainBundle] pathForResource:kSTRKey_DBFileName ofType:kSTRKey_DBFileExtension];
-        NSError *err = nil;
+        NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+        NSString *cacheRoot = [cacheDir stringByAppendingPathComponent:@"DailyNote/Data"];
         
-        if (!CopyFile(strPath, strDBPath, &err)) {
-            DDLogError(@"Failed to copy file %@ to %@ !", strPath, strDBPath);
-            return NO;
+        if (!IsExists(cacheRoot)) {
+            NSError *err = nil;
+            
+            if (!CreateDirectory(cacheRoot, &err)) {
+                DDLogError(@"Failed to create directory %@ !", cacheRoot);
+                loadResult = NO;
+            }
         }
-    }
+        
+        NSString *strDBPath = [NSString stringWithFormat:@"%@/%@.%@", cacheRoot, kSTRKey_DBFileName, kSTRKey_DBFileExtension];
+        
+        // DeleteFile(strDBPath, nil);
+        
+        if (!IsExists(strDBPath)) {
+            NSString *strPath = [[NSBundle mainBundle] pathForResource:kSTRKey_DBFileName ofType:kSTRKey_DBFileExtension];
+            NSError *err = nil;
+            
+            if (!CopyFile(strPath, strDBPath, &err)) {
+                DDLogError(@"Failed to copy file %@ to %@ !", strPath, strDBPath);
+                loadResult = NO;
+            }
+        }
+        
+        database = [FMDatabase databaseWithPath:strDBPath];
+        
+        if (![database open]) {
+            DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
+            loadResult = NO;
+        }
+        
+        loadResult = YES;
+    });
     
-    database = [FMDatabase databaseWithPath:strDBPath];
-    
-    if (![database open]) {
-        DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
-        return NO;
-    }
-    
-    return YES;
+    return loadResult;
 }
 
 - (void)loadDBData
@@ -124,6 +137,25 @@
     }
     
     [_noteRecords addObject:record];
+}
+
+- (void)removeNoteRecord:(NoteRecord *)record
+{
+    NSString *formatString = [NSString stringWithFormat:@"DELETE FROM "kSTRKey_TABLE_NAME " WHERE "kSTRKey_COLUMN_UID" = ?"];
+    
+    if (![database executeUpdate:formatString, record.uid]) {
+        DDLogError(@"Delete record failed, error: %@, code: %d", database.lastErrorMessage, database.lastErrorCode);
+        return;
+    }
+    
+    [_noteRecords removeObject:record];
+}
+
+#pragma mark Public
+
+- (NSArray *)allNoteRecords
+{
+    return [_noteRecords copy];
 }
 
 @end

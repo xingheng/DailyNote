@@ -12,6 +12,8 @@
 #import "FileMgrUtil.h"
 #import "DBHelper.h"
 #import "NSDate+Utilities.h"
+#import "GitRepoManager.h"
+#import "PreferencesData.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -139,22 +141,51 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 
 - (void)runBackgroundWorker
 {
-    return;
-    
     dispatch_queue_t worker = dispatch_queue_create("dailynote_gitrepo_writer", NULL);
     
     dispatch_async(worker, ^ {
         while (true) {
             DDLogDebug(@"worker is sleeping in background thread....");
             
+#if 1
             NSDate *tomorrow = [NSDate dateTomorrow];
             NSDate *targetTime = [tomorrow dateBySubtractingMinutes:5];
             
             [NSThread sleepUntilDate:targetTime];
+#else
+            [NSThread sleepForTimeInterval:20];
+#endif
             
             DDLogDebug(@"worker is working in background thread....");
             
-            // TODO
+            DBHelper *dbHelper = [DBHelper sharedInstance];
+            GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
+            NSArray *records = dbHelper.allNoteRecords;
+            
+            records = [records sortedArrayUsingComparator:^(id obj1, id obj2) {
+                NoteRecord *record1 = obj1;
+                NoteRecord *record2 = obj2;
+                
+                if ([record1.date isEarlierThanDate:record2.date]) {
+                    return NSOrderedAscending;
+                } else {
+                    return NSOrderedDescending;
+                }
+                
+                return NSOrderedSame;
+            }];
+            
+            for (NoteRecord *item in records) {
+                [manager saveRecordToFile:item shouldCommit:YES];
+                [dbHelper removeNoteRecord:item];
+            }
+            
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = @"DailyNote";
+            notification.informativeText = [NSString stringWithFormat:@"Committed %ld record(s) to git repository!", records.count];
+            // notification.soundName = NSUserNotificationDefaultSoundName;
+
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         }
     });
 }

@@ -10,6 +10,7 @@
 #import "FileMgrUtil.h"
 #import "NSDate+CalendarProperty.h"
 #import "NSDate+StringFormat.h"
+#import "NSString+Utilities.h"
 
 @implementation GitRepoManager
 {
@@ -72,8 +73,7 @@
     
     NSArray *items = [record.content componentsSeparatedByString:@"\n"];
     for (NSString *item in items) {
-        NSString *strTrim = [item stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if (strTrim.length <= 0) {
+        if ([item isEmpty]) {
             continue;
         }
         
