@@ -75,6 +75,7 @@
             if (!CreateDirectory(cacheRoot, &err)) {
                 DDLogError(@"Failed to create directory %@ !", cacheRoot);
                 loadResult = NO;
+                return;
             }
         }
         
@@ -89,6 +90,7 @@
             if (!CopyFile(strPath, strDBPath, &err)) {
                 DDLogError(@"Failed to copy file %@ to %@ !", strPath, strDBPath);
                 loadResult = NO;
+                return;
             }
         }
         
@@ -97,6 +99,7 @@
         if (![database open]) {
             DDLogError(@"Open database failed, database: %@, error: %@, code: %d", database.databasePath, database.lastErrorMessage, database.lastErrorCode);
             loadResult = NO;
+            return;
         }
         
         loadResult = YES;
