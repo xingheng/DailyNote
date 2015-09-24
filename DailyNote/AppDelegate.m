@@ -14,6 +14,7 @@
 #import "NSDate+Utilities.h"
 #import "GitRepoManager.h"
 #import "PreferencesData.h"
+#import "AlertUtil.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -55,9 +56,31 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     return YES;
 }
 
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    DBHelper *dbHelper = [DBHelper sharedInstance];
+    if (dbHelper.allNoteRecords.count > 0) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"DailyNote Notice";
+        alert.informativeText = @"It seems you have some uncommited note records in schedular task list, quitting this app will cancel the records in task and save them in local cache, they will be delay to commit in the next running time. Press 'OK' button to quit";
+        [alert addButtonWithTitle:@"Quit"];
+        [alert addButtonWithTitle:@"Cancel"];
+        
+        NSModalResponse result = [alert runModal];
+        
+        if (result == -NSModalResponseStop) {
+            return NSTerminateNow;
+        } else {
+            return NSTerminateCancel;
+        }
+    }
+    
+    return NSTerminateNow;
+}
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    // Insert code here to tear down your application
+    DDLogInfo(@"App will exit, date: %@", [NSDate date]);
 }
 
 #pragma mark - NSUserNotificationCenterDelegate
@@ -166,7 +189,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             [self openLogFile];
             break;
         case DNMenuItemKindQuit:
-            exit(EXIT_SUCCESS);
+            [[NSRunningApplication currentApplication] terminate];
             break;
     }
 }
