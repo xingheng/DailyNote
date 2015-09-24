@@ -182,18 +182,16 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     dispatch_async(worker, ^ {
         while (true) {
-            DDLogDebug(@"DailyNote worker is sleeping in background thread, date: %@....", [NSDate date]);
-            
 #if 1
-            NSDate *tomorrow = [NSDate dateTomorrow];
-            NSDate *targetTime = [tomorrow dateBySubtractingMinutes:5];
+            NSDate *targetTime = [[NSDate date] dateAtEndOfDay];
             
+            DDLogDebug(@"DailyNote worker is sleeping in background thread, now: %@...., wake date: %@", [NSDate date], targetTime);
             [NSThread sleepUntilDate:targetTime];
 #else
             [NSThread sleepForTimeInterval:20];
 #endif
             
-            DDLogDebug(@"DailyNote worker is working in background thread, date: %@....", [NSDate date]);
+            DDLogDebug(@"DailyNote worker is working in background thread, now: %@....", [NSDate date]);
             
             DBHelper *dbHelper = [DBHelper sharedInstance];
             GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
@@ -261,7 +259,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
         return;
     }
     
-    if (![[NSWorkspace sharedWorkspace] openFile:logFullPath withApplication:@"TextEdit.app"]) {
+    if (![[NSWorkspace sharedWorkspace] openFile:logFullPath/* withApplication:@"TextEdit.app"*/]) {
         DDLogError(@"Failed to open log file '%@'.", logFullPath);
     }
 }

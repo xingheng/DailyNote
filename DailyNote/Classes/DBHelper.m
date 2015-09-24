@@ -151,7 +151,11 @@
         return;
     }
     
-    [_noteRecords removeObject:record];
+    for (NoteRecord *item in _noteRecords) {
+        if ([item.uid isEqualToString:record.uid]) {
+            [_noteRecords removeObject:item];
+        }
+    }
 }
 
 #pragma mark Public
