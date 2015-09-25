@@ -196,7 +196,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 
 - (void)showDefaultWindow
 {
-    [self showMainWindow];
+    [self showPreferencesWindow];
 }
 
 - (void)runBackgroundWorker
