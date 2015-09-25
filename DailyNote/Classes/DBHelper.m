@@ -151,7 +151,9 @@
         return;
     }
     
-    for (NoteRecord *item in _noteRecords) {
+    for (int i = 0; i < _noteRecords.count; i++) {
+        NoteRecord *item = _noteRecords[i];
+        
         if ([item.uid isEqualToString:record.uid]) {
             [_noteRecords removeObject:item];
         }

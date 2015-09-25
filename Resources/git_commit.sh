@@ -20,7 +20,7 @@ echo "$STATUS_LOG\n"
 
 if [[ $STATUS_LOG == *"nothing to commit"* ]]
 then
-    exit EXIT_SUCCESS
+    exit 0
 fi
 
 STAGE_LOG=`$GITPATH add -A --force --verbose .`
