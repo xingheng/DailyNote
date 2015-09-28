@@ -271,7 +271,8 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     }
     
     [mainWC showWindow:self];
-    [mainWC becomeFirstResponder];
+    [mainWC.window setLevel:NSMainMenuWindowLevel];
+    [mainWC.window makeKeyAndOrderFront:self];
 }
 
 - (void)showPreferencesWindow
@@ -281,7 +282,8 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     }
     
     [prefWC showWindow:self];
-    [prefWC becomeFirstResponder];
+    [prefWC.window setLevel:NSMainMenuWindowLevel];
+    [prefWC.window makeKeyAndOrderFront:self];
 }
 
 - (void)openLogFile
