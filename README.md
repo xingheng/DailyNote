@@ -30,4 +30,28 @@
 
 
 
+---
+
+### Screen shot
+
+Menu
+
+ ![app_menu](./Screenshots/app_menu.png)
+
+
+
+Editor
+
+![app_editor_window](./Screenshots/app_editor_window.png)
+
+Preferences 
+
+![app_prefs_window](./Screenshots/app_prefs_window.png)
+
+Preview markdown file in Mou
+
+![md_preview_in_mou](./Screenshots/md_preview_in_mou.png)
+
+
+
 Enjoy!

@@ -205,7 +205,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     
     dispatch_async(worker, ^ {
         while (true) {
-#if 1
+#if 0
             NSDate *targetTime = [[NSDate date] dateAtEndOfDay];
             
             DDLogDebug(@"DailyNote worker is sleeping in background thread, now: %@...., wake date: %@", [NSDate date], targetTime);
