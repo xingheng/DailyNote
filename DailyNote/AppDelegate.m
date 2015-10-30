@@ -211,7 +211,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             DDLogDebug(@"DailyNote worker is sleeping in background thread, now: %@...., wake date: %@", [NSDate date], targetTime);
             [NSThread sleepUntilDate:targetTime];
 #else
-            [NSThread sleepForTimeInterval:20];
+            [NSThread sleepForTimeInterval:5];
 #endif
             
             NSDate *dateBeforeTask = [NSDate date];
@@ -220,6 +220,12 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             DBHelper *dbHelper = [DBHelper sharedInstance];
             GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
             NSArray *records = dbHelper.allNoteRecords;
+            
+            
+            [manager pushToRemote];
+            
+            return;
+            
             
             if (records.count > 0) {
                 records = [records sortedArrayUsingComparator:^(id obj1, id obj2) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6802A5E11BBD3FDD003E5A7C /* git_push.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6802A5E01BBD3FBC003E5A7C /* git_push.sh */; };
 		6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */; };
 		68C4EE5F1BB38EFE0014A2C1 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C4EE5E1BB38EFE0014A2C1 /* NSString+Utilities.m */; };
 		68EADFD71BB1601800975D52 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EADFD61BB1601800975D52 /* NSDate+Utilities.m */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		02DB6705DB623732603B550F /* libPods-DailyNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DailyNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6802A5E01BBD3FBC003E5A7C /* git_push.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_push.sh; sourceTree = "<group>"; };
 		6898CED41BB0EF2C00AB0722 /* NSDate+StringFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringFormat.h"; sourceTree = "<group>"; };
 		6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringFormat.m"; sourceTree = "<group>"; };
 		68C4EE5D1BB38EFE0014A2C1 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				68F37CBA1BAFE7B500D070B0 /* dailynote_data.sqlite3 */,
 				68F37CBB1BAFE7B500D070B0 /* sql.txt */,
 				68EADFD81BB251FC00975D52 /* git_commit.sh */,
+				6802A5E01BBD3FBC003E5A7C /* git_push.sh */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -309,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6802A5E11BBD3FDD003E5A7C /* git_push.sh in Resources */,
 				68EADFD91BB2576000975D52 /* git_commit.sh in Resources */,
 				68F37CBC1BAFE7B500D070B0 /* dailynote_data.sqlite3 in Resources */,
 				BE731FFA1BAE996A000AC87C /* Images.xcassets in Resources */,

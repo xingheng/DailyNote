@@ -140,4 +140,52 @@
     }
 }
 
+- (void)pushToRemote
+{
+    dispatch_block_t block = ^ {
+#if 0
+        NSString *bashScriptPath = [[NSBundle mainBundle] pathForResource:@"git_commit" ofType:@"sh"];
+        NSString *strCommitMessage = [NSString stringWithFormat:@"[DailyNote] Updated!"];
+        NSString *commitDate = [[NSDate date] stringDate];
+        
+        NSTask *task = [[NSTask alloc] init];
+        task.currentDirectoryPath = repositoryPath;
+        task.launchPath = @"/bin/sh";
+        
+        task.arguments = @[@"-c", [NSString stringWithFormat:@"%@ \"%@\" \"%@\"", bashScriptPath, strCommitMessage, commitDate]];
+#else
+        NSString *bashScriptPath = [[NSBundle mainBundle] pathForResource:@"git_push" ofType:@"sh"];
+        
+        NSTask *task = [[NSTask alloc] init];
+        task.currentDirectoryPath = repositoryPath;
+        task.launchPath = @"/bin/sh";
+        
+        task.arguments = @[@"-c", [NSString stringWithFormat:@"%@ ", bashScriptPath]];
+#endif
+        
+        NSPipe *pipe = [NSPipe pipe];
+        [task setStandardOutput:pipe];
+        [task setStandardError:pipe];
+        
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            DDLogError(exception.description);
+        }
+        
+        NSFileHandle *file = [pipe fileHandleForReading];
+        NSData *data = [file readDataToEndOfFile];
+        NSString *strFullLog = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        DDLogDebug(@"Log:---------\n%@\n-----------", strFullLog);
+    };
+    
+    if ([NSThread isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
+    } else {
+        block();
+    }
+}
+
 @end

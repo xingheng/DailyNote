@@ -13,3 +13,8 @@ NSString *GetDailyNoteGitRepoPath();
 
 void SetFShouldAutoPushWhenPosting(BOOL flag);
 BOOL GetFShouldAutoPushWhenPosting();
+
+void SetLastDailyNoteContent(NSString *content);
+NSString *GetLastDailyNoteContent();
+
+@

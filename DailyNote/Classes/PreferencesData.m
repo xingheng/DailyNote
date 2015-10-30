@@ -10,6 +10,7 @@
 
 #define kSTRKey_UserDefault_ShouldAutoPushWhenPosting  @"kSTRKey_UserDefault_ShouldAutoPushWhenPosting"
 #define kSTRKey_UserDefault_DailyNote_GitRepoPath  @"kSTRKey_UserDefault_DailyNote_GitRepoPath"
+#define kSTRKey_UserDefault_LastDailyNoteContent    @"kSTRKey_UserDefault_LastDailyNoteContent"
 
 
 BOOL HasUserDefaultKey(NSString *strKey);
@@ -46,6 +47,19 @@ BOOL GetFShouldAutoPushWhenPosting()
     return [userDefault boolForKey:kSTRKey_UserDefault_ShouldAutoPushWhenPosting];
 }
 
+
+void SetLastDailyNoteContent(NSString *content)
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:content forKey:kSTRKey_UserDefault_LastDailyNoteContent];
+    [userDefault synchronize];
+}
+
+NSString *GetLastDailyNoteContent()
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault objectForKey:kSTRKey_UserDefault_LastDailyNoteContent];
+}
 
 #pragma mark - Private
 

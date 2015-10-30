@@ -65,6 +65,32 @@
     NoteRecord *record = [NoteRecord createNoteRecordWithCurrentDate:text];
     [[DBHelper sharedInstance] saveRecord:record];
     DDLogInfo(@"Saved note record '%@' to database.", record);
+    
+    [self closeButtonClicked:sender];
+}
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+    NSLog(@"%@", notification);
+    
+    NSString *strLastContent = GetLastDailyNoteContent();
+    
+    if (![strLastContent isEmpty]) {
+        SetLastDailyNoteContent(strLastContent);
+    }
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    NSLog(@"%@", notification);
+    
+    NSString *strLastContent = _tfNoteTextView.string;
+    
+    if (![strLastContent isEmpty]) {
+        SetLastDailyNoteContent(strLastContent);
+    }
 }
 
 @end

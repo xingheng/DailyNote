@@ -19,4 +19,6 @@
 
 - (void)saveRecordToFile:(NoteRecord *)record shouldCommit:(BOOL)willCommit;
 
+- (void)pushToRemote;
+
 @end
