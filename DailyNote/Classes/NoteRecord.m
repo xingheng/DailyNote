@@ -8,6 +8,7 @@
 
 #import "NoteRecord.h"
 #import "NSDate+CalendarProperty.h"
+#import "NSDate+Utilities.h"
 
 @implementation NoteRecord
 
@@ -36,6 +37,22 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"[%@]uid: %@, date: %@, content: %@", NSStringFromClass([self class]), _uid, _date, _content];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[NoteRecord class]]) {
+        NoteRecord *record = object;
+        
+        return [self.uid isEqualToString:record.uid];
+    }
+    
+    return [super isEqual:object];
+}
+
+- (BOOL)isRoughlyEqual:(NoteRecord *)record
+{
+    return [self.content isEqualToString:record.content] && [self.date isEqualToDateIgnoringTime:record.date];
 }
 
 @end

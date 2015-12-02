@@ -63,8 +63,11 @@
     }
     
     NoteRecord *record = [NoteRecord createNoteRecordWithCurrentDate:text];
-    [[DBHelper sharedInstance] saveRecord:record];
-    DDLogInfo(@"Saved note record '%@' to database.", record);
+    
+    if (![[DBHelper sharedInstance] isExist:record]) {
+        [[DBHelper sharedInstance] saveRecord:record];
+        DDLogInfo(@"Saved note record '%@' to database.", record);
+    }
 }
 
 @end

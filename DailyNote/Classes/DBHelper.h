@@ -21,4 +21,6 @@
 
 - (void)removeNoteRecord:(NoteRecord *)record;
 
+- (BOOL)isExist:(NoteRecord *)record;
+
 @end

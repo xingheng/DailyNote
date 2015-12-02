@@ -22,4 +22,6 @@
 
 - (instancetype)initWithText:(NSString *)noteText date:(NSDate *)date;
 
+- (BOOL)isRoughlyEqual:(NoteRecord *)record;
+
 @end

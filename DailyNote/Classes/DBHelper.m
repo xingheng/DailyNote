@@ -167,4 +167,15 @@
     return [_noteRecords copy];
 }
 
+- (BOOL)isExist:(NoteRecord *)record
+{
+    for (NoteRecord *item in _noteRecords) {
+        if ([item isRoughlyEqual:record]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 @end
