@@ -20,6 +20,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
     DNMenuItemKindPreferences,
     DNMenuItemKindLog,
+    DNMenuItemKindAbout,
     DNMenuItemKindQuit
 };
 
@@ -164,6 +165,9 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     item = [[NSMenuItem alloc] initWithTitle:@"Show Log" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindLog;
     [menu addItem:item];
+    item = [[NSMenuItem alloc] initWithTitle:@"About" action:@selector(menuItemClicked:) keyEquivalent:@""];
+    item.tag = DNMenuItemKindAbout;
+    [menu addItem:item];
     item = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindQuit;
     [menu addItem:item];
@@ -187,6 +191,9 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
             break;
         case DNMenuItemKindLog:
             [self openLogFile];
+            break;
+        case DNMenuItemKindAbout:
+            [NSApp orderFrontStandardAboutPanel:nil];
             break;
         case DNMenuItemKindQuit:
             [[NSRunningApplication currentApplication] terminate];
