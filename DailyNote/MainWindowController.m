@@ -67,7 +67,38 @@
     if (![[DBHelper sharedInstance] isExist:record]) {
         [[DBHelper sharedInstance] saveRecord:record];
         DDLogInfo(@"Saved note record '%@' to database.", record);
+        
+        [self showHUDState:@"Saved!"];
     }
+}
+
+#pragma mark - 
+
+- (void)showHUDState:(NSString *)hudText
+{
+    NSView *superView = self.tfNoteTextView;
+    
+    NSTextField *hudView = [[NSTextField alloc] init];
+    [hudView setStringValue:hudText];
+    hudView.editable = NO;
+    hudView.bordered = NO;
+    hudView.wantsLayer = YES;
+    hudView.font = [NSFont systemFontOfSize:16];
+    [hudView setTextColor:[NSColor redColor]];
+    [hudView setBackgroundColor:[NSColor clearColor]];
+    [superView addSubview:hudView];
+    [hudView sizeToFit];
+    
+    CGSize size = hudView.frame.size, contentSize = superView.frame.size;
+    hudView.frame = CGRectMake((contentSize.width - size.width) / 2, (contentSize.height - size.height) / 2, size.width, size.height);
+    
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 2;
+        hudView.animator.alphaValue = 0;
+    }
+                        completionHandler:^{
+        [hudView removeFromSuperview];
+    }];
 }
 
 @end
