@@ -40,13 +40,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0af-g1-sso">
-                        <rect key="frame" x="542" y="18" width="31" height="18"/>
-                        <buttonCell key="cell" type="check" title="Push changes to remote repostory automatically when posting" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4nh-4f-T3c">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6R9-sV-zNe">
                         <rect key="frame" x="167" y="133" width="404" height="22"/>
                         <pathCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" alignment="left" id="rrb-AU-JhG">
@@ -57,7 +50,7 @@
                             <action selector="gitRepoPathCtlClicked:" target="-2" id="3hz-24-Cpy"/>
                         </connections>
                     </pathControl>
-                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oek-32-YfH">
+                    <datePicker toolTip="Recommend to restart the application after updating." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oek-32-YfH">
                         <rect key="frame" x="362" y="98" width="95" height="27"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="I4k-Cx-rOq">
                             <font key="font" metaFont="system"/>
@@ -77,7 +70,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMW-e5-VLF">
+                    <button toolTip="Recommend to restart the application after updating." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMW-e5-VLF">
                         <rect key="frame" x="18" y="64" width="229" height="18"/>
                         <buttonCell key="cell" type="check" title="Reminder before ready to commit" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EJd-Or-8Iy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -89,7 +82,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="504.5" y="378.5"/>
+            <point key="canvasLocation" x="438.5" y="378.5"/>
         </window>
     </objects>
 </document>

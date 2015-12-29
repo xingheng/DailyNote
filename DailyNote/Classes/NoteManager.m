@@ -44,7 +44,7 @@ static dispatch_queue_t workerQueue;
 {
     dispatch_async(workerQueue, ^{
         while (true) {
-#if 1 // DEBUG only
+#if DEBUG
             [NSThread sleepForTimeInterval:20];
 #endif
             BOOL hasReminder = GetFShouldRemindForCommit();
@@ -80,8 +80,6 @@ static dispatch_queue_t workerQueue;
 
                 [DefaultUserNotificationCenter scheduleNotification:notificationForReminder];
             }
-
-            return;
 
             DDLogDebug(@"DailyNote worker is sleeping in background thread, now: %@...., wake date: %@", now, targetDate);
             [NSThread sleepUntilDate:targetDate];
