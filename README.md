@@ -24,9 +24,10 @@
 
 ### When
 
-> 1. When to write note changes to file? It’s 23:59:59 everyday.
+> 1. When to write note changes to file? ~~It’s 23:59:59 everyday~~. It's up to you, open Preferences window, just give it your after work time.
 > 2. When to do commits to git repository? Same as above.
-> 3. When to push commit to remote git repository? Not yet. Implementation is coming soon!
+> 3. A reminder there? Yes, this is a new feature after version 1.0.4, just make sure the reminder option in Preferences checked. It will remind you to write daily note before 5 minutes when committing every day.
+> 4. When to push commit to remote git repository? Not yet. Implementation is coming soon!
 
 
 
