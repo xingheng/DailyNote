@@ -46,7 +46,7 @@
     _cBoxReminderForCommit.state = GetFShouldRemindForCommit() ? 1 : 0;
 
     _timePicker.locale = [NSLocale currentLocale];
-    _timePicker.dateValue = [NSDate date];
+    _timePicker.dateValue = GetDailyNoteCommitTime() ?: [NSDate date];
 }
 
 #pragma mark - Actions
