@@ -8,8 +8,10 @@
 
 #import "PreferencesData.h"
 
-#define kSTRKey_UserDefault_ShouldAutoPushWhenPosting  @"kSTRKey_UserDefault_ShouldAutoPushWhenPosting"
+#define kSTRKey_UserDefault_ShouldAutoPushWhenPosting  @"kSTRKey_UserDefault_ShouldAutoPushWhenPosting" // DEPRECATED!
 #define kSTRKey_UserDefault_DailyNote_GitRepoPath  @"kSTRKey_UserDefault_DailyNote_GitRepoPath"
+#define kSTRKey_UserDefault_DailyNote_ShouldRemindForCommit  @"kSTRKey_UserDefault_DailyNote_ShouldRemindForCommit"
+#define kSTRKey_UserDefault_DailyNote_CommitTime  @"kSTRKey_UserDefault_DailyNote_CommitTime"
 
 
 BOOL HasUserDefaultKey(NSString *strKey);
@@ -29,21 +31,35 @@ NSString *GetDailyNoteGitRepoPath()
 }
 
 
-void SetFShouldAutoPushWhenPosting(BOOL flag)
+void SetDailyNoteCommitTime(NSDate *date)
 {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setBool:flag forKey:kSTRKey_UserDefault_ShouldAutoPushWhenPosting];
+    [userDefault setObject:date forKey:kSTRKey_UserDefault_DailyNote_CommitTime];
     [userDefault synchronize];
 }
 
-BOOL GetFShouldAutoPushWhenPosting()
+NSDate *GetDailyNoteCommitTime()
 {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    if (!HasUserDefaultKey(kSTRKey_UserDefault_ShouldAutoPushWhenPosting)) {
+    return [userDefault objectForKey:kSTRKey_UserDefault_DailyNote_CommitTime];
+}
+
+
+void SetFShouldRemindForCommit(BOOL flag)
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setBool:flag forKey:kSTRKey_UserDefault_DailyNote_ShouldRemindForCommit];
+    [userDefault synchronize];
+}
+
+BOOL GetFShouldRemindForCommit()
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if (!HasUserDefaultKey(kSTRKey_UserDefault_DailyNote_ShouldRemindForCommit)) {
         return YES;
     }
     
-    return [userDefault boolForKey:kSTRKey_UserDefault_ShouldAutoPushWhenPosting];
+    return [userDefault boolForKey:kSTRKey_UserDefault_DailyNote_ShouldRemindForCommit];
 }
 
 

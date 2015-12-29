@@ -15,7 +15,8 @@
 @interface PreferencesWindowController ()
 
 @property (weak) IBOutlet NSPathControl *pathCtlGitRepo;
-@property (weak) IBOutlet NSButton *cBoxPush2Remote;
+@property (weak) IBOutlet NSButton *cBoxReminderForCommit;
+@property (weak) IBOutlet NSDatePicker *timePicker;
 
 - (IBAction)saveButtonClicked:(id)sender;
 - (IBAction)gitRepoPathCtlClicked:(id)sender;
@@ -41,7 +42,10 @@
         _pathCtlGitRepo.URL = [NSURL fileURLWithPath:strPath isDirectory:YES];
     }
     
-    _cBoxPush2Remote.state = GetFShouldAutoPushWhenPosting() ? 1 : 0;
+    _cBoxReminderForCommit.state = GetFShouldRemindForCommit() ? 1 : 0;
+
+    _timePicker.locale = [NSLocale currentLocale];
+    _timePicker.dateValue = [NSDate date];
 }
 
 #pragma mark - Actions
@@ -49,8 +53,9 @@
 - (IBAction)saveButtonClicked:(id)sender
 {
     SetDailyNoteGitRepoPath(_pathCtlGitRepo.URL.path);
-    SetFShouldAutoPushWhenPosting(_cBoxPush2Remote.state != 0);
-    
+    SetFShouldRemindForCommit(_cBoxReminderForCommit.state != 0);
+    SetDailyNoteCommitTime(_timePicker.dateValue);
+
     [self close];
 }
 

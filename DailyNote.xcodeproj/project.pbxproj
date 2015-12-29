@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */; };
+		68B27CE61C101DDF0095022F /* NoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B27CE51C101DDF0095022F /* NoteManager.m */; };
 		68C4EE5F1BB38EFE0014A2C1 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C4EE5E1BB38EFE0014A2C1 /* NSString+Utilities.m */; };
 		68EADFD71BB1601800975D52 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EADFD61BB1601800975D52 /* NSDate+Utilities.m */; };
 		68EADFD91BB2576000975D52 /* git_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = 68EADFD81BB251FC00975D52 /* git_commit.sh */; };
@@ -45,6 +46,8 @@
 		02DB6705DB623732603B550F /* libPods-DailyNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DailyNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6898CED41BB0EF2C00AB0722 /* NSDate+StringFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringFormat.h"; sourceTree = "<group>"; };
 		6898CED51BB0EF2C00AB0722 /* NSDate+StringFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringFormat.m"; sourceTree = "<group>"; };
+		68B27CE41C101DDF0095022F /* NoteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManager.h; sourceTree = "<group>"; };
+		68B27CE51C101DDF0095022F /* NoteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManager.m; sourceTree = "<group>"; };
 		68C4EE5D1BB38EFE0014A2C1 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		68C4EE5E1BB38EFE0014A2C1 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		68EADFD51BB1601800975D52 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
@@ -106,7 +109,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		68F37CAC1BAF9E3E00D070B0 /* Classes */ = {
+		68B27CE71C101E030095022F /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				68F37CAD1BAF9E3E00D070B0 /* FileMgrUtil.h */,
@@ -121,6 +124,14 @@
 				68EADFD61BB1601800975D52 /* NSDate+Utilities.m */,
 				68C4EE5D1BB38EFE0014A2C1 /* NSString+Utilities.h */,
 				68C4EE5E1BB38EFE0014A2C1 /* NSString+Utilities.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		68F37CAC1BAF9E3E00D070B0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				68B27CE71C101E030095022F /* Common */,
 				68F37CB31BAF9F9A00D070B0 /* PreferencesData.h */,
 				68F37CB41BAF9F9A00D070B0 /* PreferencesData.m */,
 				68F37CBE1BAFE80C00D070B0 /* NoteRecord.h */,
@@ -129,6 +140,8 @@
 				68F37CC21BAFE82700D070B0 /* DBHelper.m */,
 				68F37CC51BB0135000D070B0 /* GitRepoManager.h */,
 				68F37CC61BB0135000D070B0 /* GitRepoManager.m */,
+				68B27CE41C101DDF0095022F /* NoteManager.h */,
+				68B27CE51C101DDF0095022F /* NoteManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -369,6 +382,7 @@
 				68F37CC31BAFE82700D070B0 /* DBHelper.m in Sources */,
 				68F37CC01BAFE80C00D070B0 /* NoteRecord.m in Sources */,
 				BE73201A1BAED63E000AC87C /* MainWindowController.m in Sources */,
+				68B27CE61C101DDF0095022F /* NoteManager.m in Sources */,
 				BE731FF51BAE996A000AC87C /* main.m in Sources */,
 				BE73201F1BAEE787000AC87C /* PreferencesWindowController.m in Sources */,
 				6898CED61BB0EF2C00AB0722 /* NSDate+StringFormat.m in Sources */,

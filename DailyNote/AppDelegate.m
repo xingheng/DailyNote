@@ -10,11 +10,8 @@
 #import "MainWindowController.h"
 #import "PreferencesWindowController.h"
 #import "FileMgrUtil.h"
-#import "DBHelper.h"
-#import "NSDate+Utilities.h"
-#import "GitRepoManager.h"
-#import "PreferencesData.h"
 #import "AlertUtil.h"
+#import "NoteManager.h"
 
 typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
@@ -31,6 +28,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     PreferencesWindowController *prefWC;
     
     DDLogFileInfo *currentLogFileInfo;
+    NoteManager *noteManager;
 }
 
 @end
@@ -208,65 +206,11 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 
 - (void)runBackgroundWorker
 {
-    dispatch_queue_t worker = dispatch_queue_create("dailynote_gitrepo_writer", NULL);
-    
-    dispatch_async(worker, ^ {
-        while (true) {
-#if 1
-            NSDate *targetTime = [[NSDate date] dateAtEndOfDay];
-            
-            DDLogDebug(@"DailyNote worker is sleeping in background thread, now: %@...., wake date: %@", [NSDate date], targetTime);
-            [NSThread sleepUntilDate:targetTime];
-#else
-            [NSThread sleepForTimeInterval:20];
-#endif
-            
-            NSDate *dateBeforeTask = [NSDate date];
-            DDLogDebug(@"DailyNote worker is working in background thread, now: %@....", dateBeforeTask);
-            
-            DBHelper *dbHelper = [DBHelper sharedInstance];
-            GitRepoManager *manager = [[GitRepoManager alloc] initWithRepoPath:GetDailyNoteGitRepoPath()];
-            NSArray *records = dbHelper.allNoteRecords;
-            
-            if (records.count > 0) {
-                records = [records sortedArrayUsingComparator:^(id obj1, id obj2) {
-                    NoteRecord *record1 = obj1;
-                    NoteRecord *record2 = obj2;
-                    
-                    if ([record1.date isEarlierThanDate:record2.date]) {
-                        return NSOrderedAscending;
-                    } else {
-                        return NSOrderedDescending;
-                    }
-                    
-                    return NSOrderedSame;
-                }];
-                
-                for (NoteRecord *item in records) {
-                    [manager saveRecordToFile:item shouldCommit:YES];
-                    [dbHelper removeNoteRecord:item];
-                }
-                
-                NSString *strFinishedLog = [NSString stringWithFormat:@"Committed %ld record(s) to git repository!", records.count];
-                DDLogInfo(strFinishedLog);
-                
-                NSUserNotification *notification = [[NSUserNotification alloc] init];
-                notification.title = @"DailyNote";
-                notification.informativeText = strFinishedLog;
-                // notification.soundName = NSUserNotificationDefaultSoundName;
+    if (!noteManager) {
+        noteManager = [NoteManager new];
+    }
 
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            }
-            
-            NSDate *dateAfterTask = [NSDate date];
-            
-            if ([dateBeforeTask isEqualToDateIgnoringTime:dateAfterTask]) {
-                DDLogInfo(@"Take a break, now: %@", dateAfterTask);
-                [NSThread sleepUntilDate:[[NSDate dateTomorrow] dateAtStartOfDay]];
-                DDLogInfo(@"Wake up after a break, now: %@", dateAfterTask);
-            }
-        }
-    });
+    [noteManager run];
 }
 
 #pragma mark - Actions

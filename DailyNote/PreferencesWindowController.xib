@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController">
             <connections>
-                <outlet property="cBoxPush2Remote" destination="0af-g1-sso" id="YrT-Mx-avW"/>
+                <outlet property="cBoxReminderForCommit" destination="VMW-e5-VLF" id="9Fa-0U-Bqv"/>
                 <outlet property="pathCtlGitRepo" destination="6R9-sV-zNe" id="7w9-Vd-dEL"/>
+                <outlet property="timePicker" destination="oek-32-YfH" id="vMk-hH-vM3"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -15,10 +16,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="591" height="123"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="contentRect" x="196" y="240" width="591" height="173"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="7" width="591" height="123"/>
+                <rect key="frame" x="0.0" y="0.0" width="591" height="173"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34m-Wu-NKh">
@@ -32,23 +33,23 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HKj-W8-8bz">
-                        <rect key="frame" x="18" y="87" width="143" height="17"/>
+                        <rect key="frame" x="18" y="137" width="143" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Git repostory directory" id="IGf-AT-5To">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0af-g1-sso">
-                        <rect key="frame" x="18" y="59" width="407" height="18"/>
+                    <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0af-g1-sso">
+                        <rect key="frame" x="542" y="18" width="31" height="18"/>
                         <buttonCell key="cell" type="check" title="Push changes to remote repostory automatically when posting" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4nh-4f-T3c">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6R9-sV-zNe">
-                        <rect key="frame" x="167" y="83" width="404" height="22"/>
-                        <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="rrb-AU-JhG">
+                        <rect key="frame" x="167" y="133" width="404" height="22"/>
+                        <pathCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" alignment="left" id="rrb-AU-JhG">
                             <font key="font" metaFont="system"/>
                             <url key="url" string="file:///Users/"/>
                         </pathCell>
@@ -56,12 +57,39 @@
                             <action selector="gitRepoPathCtlClicked:" target="-2" id="3hz-24-Cpy"/>
                         </connections>
                     </pathControl>
+                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oek-32-YfH">
+                        <rect key="frame" x="362" y="98" width="95" height="27"/>
+                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="I4k-Cx-rOq">
+                            <font key="font" metaFont="system"/>
+                            <date key="date" timeIntervalSinceReferenceDate="-595864800">
+                                <!--1982-02-13 10:00:00 +0000-->
+                            </date>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
+                        </datePickerCell>
+                    </datePicker>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LcC-Za-PnE">
+                        <rect key="frame" x="18" y="101" width="280" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Commit changes to local repostory everyday" id="tgB-17-mH1">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMW-e5-VLF">
+                        <rect key="frame" x="18" y="64" width="229" height="18"/>
+                        <buttonCell key="cell" type="check" title="Reminder before ready to commit" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EJd-Or-8Iy">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="504.5" y="353.5"/>
+            <point key="canvasLocation" x="504.5" y="378.5"/>
         </window>
     </objects>
 </document>

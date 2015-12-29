@@ -11,5 +11,8 @@
 void SetDailyNoteGitRepoPath(NSString *strPath);
 NSString *GetDailyNoteGitRepoPath();
 
-void SetFShouldAutoPushWhenPosting(BOOL flag);
-BOOL GetFShouldAutoPushWhenPosting();
+void SetDailyNoteCommitTime(NSDate *date);
+NSDate *GetDailyNoteCommitTime();
+
+void SetFShouldRemindForCommit(BOOL flag);
+BOOL GetFShouldRemindForCommit();
