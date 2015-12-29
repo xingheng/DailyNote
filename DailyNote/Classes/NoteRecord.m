@@ -23,14 +23,14 @@
         _uid = [[NSUUID UUID] UUIDString];
         _content = noteText;
         _date = date;
-        
+
         NSDateComponents *components = [date components];
         _weekOfYear = components.weekOfYear;
         _weekOfMonth = components.weekOfMonth;
         _year = components.year;
         _month = components.month;
     }
-    
+
     return self;
 }
 
@@ -43,10 +43,10 @@
 {
     if ([object isKindOfClass:[NoteRecord class]]) {
         NoteRecord *record = object;
-        
+
         return [self.uid isEqualToString:record.uid];
     }
-    
+
     return [super isEqual:object];
 }
 

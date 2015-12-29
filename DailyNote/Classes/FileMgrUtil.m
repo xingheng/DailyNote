@@ -8,7 +8,7 @@
 
 #import "FileMgrUtil.h"
 
-NSFileManager *GetDefaultFileManager()
+NSFileManager * GetDefaultFileManager()
 {
     return [NSFileManager defaultManager];
 }
@@ -16,29 +16,34 @@ NSFileManager *GetDefaultFileManager()
 BOOL IsExists(NSString *strPath)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
+
     return [fileMgr fileExistsAtPath:strPath];
 }
 
 BOOL CreateDirectory(NSString *strPath, NSError **outError)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
+
     return [fileMgr createDirectoryAtPath:strPath withIntermediateDirectories:YES attributes:nil error:outError];
 }
 
 BOOL CreateFile(NSString *strPath)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
+
     return [fileMgr createFileAtPath:strPath contents:nil attributes:nil];
 }
 
 BOOL DeleteFile(NSString *strPath, NSError **outError)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
+
     return [fileMgr removeItemAtPath:strPath error:outError];
 }
 
 BOOL CopyFile(NSString *sourcePath, NSString *destPath, NSError **outError)
 {
     NSFileManager *fileMgr = GetDefaultFileManager();
+
     return [fileMgr copyItemAtPath:sourcePath toPath:destPath error:outError];
 }

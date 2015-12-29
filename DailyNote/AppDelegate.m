@@ -13,7 +13,7 @@
 #import "AlertUtil.h"
 #import "NoteManager.h"
 
-typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
+typedef NS_OPTIONS (NSUInteger, DNMenuItemKind) {
     DNMenuItemKindMain,
     DNMenuItemKindPreferences,
     DNMenuItemKindLog,
@@ -26,7 +26,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     NSStatusItem *statusItem;
     MainWindowController *mainWC;
     PreferencesWindowController *prefWC;
-    
+
     DDLogFileInfo *currentLogFileInfo;
     NoteManager *noteManager;
 }
@@ -42,7 +42,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     [self initStatusBarConfig];
     [self showDefaultWindow];
     [self runBackgroundWorker];
-    
+
     [NSUserNotificationCenter defaultUserNotificationCenter].delegate = self;
 }
 
@@ -51,29 +51,30 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     if (!flag) {
         [self showDefaultWindow];
     }
-    
+
     return YES;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     DBHelper *dbHelper = [DBHelper sharedInstance];
+
     if (dbHelper.allNoteRecords.count > 0) {
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = @"DailyNote Notice";
         alert.informativeText = @"It seems you have some uncommited note records in schedular task list, quitting this app will cancel the records in task and save them in local cache, they will be delay to commit in the next running time. Press 'OK' button to quit";
         [alert addButtonWithTitle:@"Quit"];
         [alert addButtonWithTitle:@"Cancel"];
-        
+
         NSModalResponse result = [alert runModal];
-        
+
         if (result == -NSModalResponseStop) {
             return NSTerminateNow;
         } else {
             return NSTerminateCancel;
         }
     }
-    
+
     return NSTerminateNow;
 }
 
@@ -94,16 +95,17 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)menuWillOpen:(NSMenu *)menu
 {
     __block NSMenuItem *logItem = nil;
-    
-    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+
+    [menu.itemArray
+     enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSMenuItem *item = obj;
-        
+
         if (item.tag == DNMenuItemKindLog) {
             logItem = item;
             *stop = YES;
         }
     }];
-    
+
     if (logItem) {
         NSString *logFile = currentLogFileInfo.filePath;
         logItem.hidden = !IsExists(logFile);
@@ -115,21 +117,21 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)initDDLog
 {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    
+
     NSString *appName = [[NSProcessInfo processInfo] processName];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? paths[0] : NSTemporaryDirectory();
     NSString *logFileDirectory = [[basePath stringByAppendingPathComponent:@"Logs"] stringByAppendingPathComponent:appName];
-    
+
     DDLogFileManagerDefault *logFileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:logFileDirectory];
-    
+
     DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:logFileManager];
     fileLogger.rollingFrequency = 60 * 60 * 24 * 7; // 7 * 24 hour rolling
     // fileLogger.maximumFileSize = 1024 * 512;
     fileLogger.logFileManager.maximumNumberOfLogFiles = 30;
-    
+
     currentLogFileInfo = fileLogger.currentLogFileInfo;
-    
+
     [DDLog addLogger:fileLogger];
 }
 
@@ -143,17 +145,18 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)initStatusBarConfig
 {
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
+
     statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
     statusItem.title = @"♨︎";
     statusItem.highlightMode = YES;
     statusItem.toolTip = @"DailyNote";
-    
+
     NSMenu *menu = [[NSMenu alloc] init];
     menu.delegate = self;
     statusItem.menu = menu;
-    
+
     NSMenuItem *item = nil;
-    
+
     item = [[NSMenuItem alloc] initWithTitle:@"Editor" action:@selector(menuItemClicked:) keyEquivalent:@""];
     item.tag = DNMenuItemKindMain;
     [menu addItem:item];
@@ -176,23 +179,27 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     if (!sender) {
         return;
     }
-    
+
     NSAssert([sender isKindOfClass:[NSMenuItem class]], @"Unexpected sender, sender: %@, func: %s", sender, __func__);
     NSMenuItem *item = (NSMenuItem *)sender;
-    
+
     switch (item.tag) {
         case DNMenuItemKindMain:
             [self showMainWindow];
             break;
+
         case DNMenuItemKindPreferences:
             [self showPreferencesWindow];
             break;
+
         case DNMenuItemKindLog:
             [self openLogFile];
             break;
+
         case DNMenuItemKindAbout:
             [NSApp orderFrontStandardAboutPanel:nil];
             break;
+
         case DNMenuItemKindQuit:
             [[NSRunningApplication currentApplication] terminate];
             break;
@@ -220,7 +227,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     if (!mainWC) {
         mainWC = [[MainWindowController alloc] init];
     }
-    
+
     [mainWC showWindow:self];
     [mainWC.window setLevel:NSMainMenuWindowLevel];
     [mainWC.window makeKeyAndOrderFront:self];
@@ -231,7 +238,7 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
     if (!prefWC) {
         prefWC = [[PreferencesWindowController alloc] init];
     }
-    
+
     [prefWC showWindow:self];
     [prefWC.window setLevel:NSMainMenuWindowLevel];
     [prefWC.window makeKeyAndOrderFront:self];
@@ -240,13 +247,13 @@ typedef NS_OPTIONS(NSUInteger, DNMenuItemKind) {
 - (void)openLogFile
 {
     NSString *logFullPath = currentLogFileInfo.filePath;
-    
+
     if (!IsExists(logFullPath)) {
         DDLogError(@"Log file doesn't exist. '%@'.", logFullPath);
         return;
     }
-    
-    if (![[NSWorkspace sharedWorkspace] openFile:logFullPath/* withApplication:@"TextEdit.app"*/]) {
+
+    if (![[NSWorkspace sharedWorkspace] openFile:logFullPath /* withApplication:@"TextEdit.app"*/]) {
         DDLogError(@"Failed to open log file '%@'.", logFullPath);
     }
 }

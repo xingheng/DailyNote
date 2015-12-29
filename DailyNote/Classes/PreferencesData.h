@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 void SetDailyNoteGitRepoPath(NSString *strPath);
-NSString *GetDailyNoteGitRepoPath();
+NSString * GetDailyNoteGitRepoPath();
 
 void SetDailyNoteCommitTime(NSDate *date);
-NSDate *GetDailyNoteCommitTime();
+NSDate * GetDailyNoteCommitTime();
 
 void SetFShouldRemindForCommit(BOOL flag);
 BOOL GetFShouldRemindForCommit();

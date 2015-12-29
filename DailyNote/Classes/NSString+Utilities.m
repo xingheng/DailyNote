@@ -13,6 +13,7 @@
 - (BOOL)isEmpty
 {
     NSString *strTrim = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
     return strTrim.length <= 0;
 }
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-NSFileManager *GetDefaultFileManager();
+NSFileManager * GetDefaultFileManager();
 
 BOOL IsExists(NSString *strPath);
 
